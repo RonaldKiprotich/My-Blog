@@ -4,6 +4,7 @@
     <ul class="navbar-nav ml-auto">
         {% if current_user.is_authenticated %}
         <li class="nav-item dropdown">
+          <a class="nav-link text-white pr-5" aria-haspopup="true" aria-expanded="false" href = "{{url_for('main.new_blogs')}}">Newblog</a>
           <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown"
             aria-haspopup="true" aria-expanded="false" href = "/">{{current_user.username}}</a>
           <div class="dropdown-menu dropdown-primary" aria-labelledby="navbarDropdownMenuLink">
