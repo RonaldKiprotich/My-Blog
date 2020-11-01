@@ -5,6 +5,17 @@ from . import login_manager
 from datetime import datetime
 
 
+@login_manager.user_loader
+def load_user(user_id):
+    return User.query.get(int(user_id))
+
+class Quote:
+    def __init__(self,id,author,quote):
+        self.id =id
+        self.author = author
+        self.quote = quote
+
+
 class User(UserMixin,db.Model):
     __tablename__ = 'users'
     id = db.Column(db.Integer,primary_key = True)
@@ -12,7 +23,8 @@ class User(UserMixin,db.Model):
     email = db.Column(db.String(255),unique = True,index = True)
     bio = db.Column(db.String(255))
     profile_pic_path = db.Column(db.String())
-    password_secure = db.Column(db.String(255))    
+    password_secure = db.Column(db.String(255)) 
+    blog = db.relationship('Blog', backref='user',passive_deletes=True,lazy="dynamic")   
     
 
     @property
@@ -51,7 +63,7 @@ class Blog(db.Model):
         blogs = Blog.query.filter_by(id=id).all()
         return blogs
     @classmethod
-    def get_all_blogs(cls,id):
+    def get_all_blogs(cls):
         blogs = Blog.query.all()
         return blogs
     def __repr__(self):
