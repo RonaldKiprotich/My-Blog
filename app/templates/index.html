@@ -2,3 +2,11 @@
 {%block navbar %}
    {% include 'navbar.html' %}
 {% endblock %} 
+
+
+{% block content %}
+{% for quote in getquotes %}
+<p>{{quote.author}}</p>
+<p>{{quote.quote}}</p>
+{% endfor %}
+{% endblock %}
