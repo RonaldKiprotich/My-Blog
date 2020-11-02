@@ -8,12 +8,12 @@ def configure_request(app):
 def getQuotes():
     with urllib.request.urlopen(base_url) as url:
         quotesResponse = url.read()
-        lll = json.loads(quotesResponse)
-        print(lll)
-        r = []
-        id = lll.get('id')
-        author = lll.get('author')
-        quote = lll.get('quote')
+        word = json.loads(quotesResponse)
+        print(word)
+        read = []
+        id = word.get('id')
+        author = word.get('author')
+        quote = word.get('quote')
         quoteObject = Quote(id,author,quote)
-        r.append(quoteObject)
-        return r
+        read.append(quoteObject)
+        return read
