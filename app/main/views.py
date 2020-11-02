@@ -3,12 +3,24 @@ from flask_login import login_required,current_user
 from . import main
 from .. import db
 from ..models import User,Blog
-from .forms import BlogForm
+from .forms import BlogForm,UpdateProfile
+from ..requests import getQuotes
 
-
-@main.route('/')
+@main.route('/',methods=['GET'])
 def index():
-    return render_template('index.html')
+    getquotes=getQuotes()
+    return render_template('index.html',getquotes=getquotes)
+
+
+@main.route('/user/<uname>')
+def profile(uname):
+    user = User.query.filter_by(username = uname).first()
+
+    if user is None:
+        abort(404)
+
+    return render_template("profile/profile.html", user = user)
+
 
 
 @main.route('/blog/newBlog',methods = ['GET','POST'])
