@@ -13,7 +13,8 @@ class Config:
 
 
 class ProdConfig(Config):
-   pass
+    
+    SQLALCHEMY_DATABASE_URI = 'postgresql+psycopg2://moringa:Raykip254@localhost/blog'
 
 
 class TestConfig(Config):
