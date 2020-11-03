@@ -1,6 +1,10 @@
 
 <!--Navbar -->
-<nav class=" container mb-1 navbar navbar-expand-lg navbar-dark blue">
+<nav class=" mb-1 navbar navbar-expand-lg  #c62828 warning-color-dark
+#FF8800">
+  <ul class="nav navbar-nav text-white" >
+    <li><a class="nav-link text-white" href="/">Home</a></li>
+  </ul>
     <ul class="navbar-nav ml-auto">
 
       <li>
@@ -8,7 +12,7 @@
       </li>
 
       <li>
-        <a class="nav-link text-white pr-4" aria-haspopup="true" aria-expanded="false" href = "{{url_for('main.allBlogs')}}">AllBlogs</a>
+        <a class="nav-link text-white pr-4" aria-haspopup="true" aria-expanded="false" href = "{{url_for('main.allBlogs')}}">Blogs</a>
       </li>
       <li>
         <a class="nav-link text-white pr-5" aria-haspopup="true" aria-expanded="false" href = "{{url_for('main.newBlog')}}">Newblog</a>
@@ -18,7 +22,7 @@
         
         <li class="nav-item dropdown">
          
-          <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown"
+          <a class="nav-link dropdown-toggle text-beige" id="navbarDropdownMenuLink" data-toggle="dropdown"
             aria-haspopup="true" aria-expanded="false" href = "/">{{current_user.username}}</a>
           <div class="dropdown-menu dropdown-primary" aria-labelledby="navbarDropdownMenuLink">
             <a class="dropdown-item" href="{{url_for('auth.logout')}}">Logout</a>
