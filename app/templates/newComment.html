@@ -30,7 +30,7 @@
         <h4>{{comment.user.username}}</h4>       
             <p>{{comment.comment}}</p>        
             <p>{{comment.posted.strftime("%Y-%m-%d")}}</p>
-            <a ><i class="fas fa-trash text-danger"></i></a>
+            <a href="{{url_for('main.deleteComment',id = comment.id)}}"><i class="fas fa-trash text-danger"></i></a>
             {%endfor%}
     </div>
 

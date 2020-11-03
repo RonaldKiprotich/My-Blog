@@ -12,6 +12,7 @@
     <p>{{blog.description}}</p>
     <div class="col-md-2">
         <a href="{{url_for('main.newComment',id=blog.id)}}"><i class="fas fa-comment fa-fw pr-3"></i></a>
+        <a href="{{url_for('main.deleteBlog', id = blog.id)}}"><i class="fas fa-trash text-danger"></i></a>
     </div>
     {%endfor%}
 </div>

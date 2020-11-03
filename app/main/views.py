@@ -1,4 +1,4 @@
-from flask import render_template,request,redirect,url_for,abort
+from flask import render_template,request,redirect,url_for,abort,flash
 from flask_login import login_required,current_user
 from . import main
 from .. import db,photos
@@ -88,3 +88,22 @@ def newBlog():
 def allBlogs():
     blogs = Blog.get_all_blogs()
     return render_template('blogs.html', blogs=blogs)
+
+
+@main.route('/delete/<int:id>', methods=['GET', 'POST'])
+@login_required
+def deleteComment(id):
+    comment =Comment.query.get_or_404(id)
+    db.session.delete(comment)
+    db.session.commit()
+    flash('comment succesfully deleted')
+    return redirect (url_for('main.allBlogs'))
+
+
+@main.route('/deleteblog/<int:id>', methods=['GET', 'POST'])
+@login_required
+def deleteBlog(id):
+    blog = Blog.query.get_or_404(id)
+    db.session.delete(blog)
+    db.session.commit()
+    return redirect(url_for('main.allBlogs'))   
