@@ -10,9 +10,12 @@
     {% for blog in blogs %}
     <p>{{blog.title_blog}}</p>
     <p>{{blog.description}}</p>
+    <div class="col-md-2">
+        <a href="{{url_for('main.newComment',id=blog.id)}}"><i class="fas fa-comment fa-fw pr-3"></i></a>
+    </div>
     {%endfor%}
 </div>
-<div class="col-md-2"></div>
+
 </div>
 </div>
 {% endblock%}

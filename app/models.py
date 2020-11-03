@@ -25,6 +25,7 @@ class User(UserMixin,db.Model):
     profile_pic_path = db.Column(db.String())
     password_secure = db.Column(db.String(255)) 
     blog = db.relationship('Blog', backref='user',passive_deletes=True,lazy="dynamic")   
+    comment = db.relationship('Comment', backref='user',passive_deletes=True,lazy="dynamic")
     
 
     @property
@@ -68,3 +69,25 @@ class Blog(db.Model):
         return blogs
     def __repr__(self):
         return f'Blogs {self.blog_title}'
+
+
+
+class Comment(db.Model):
+    __tablename__ = 'comments'
+    id = db.Column(db.Integer, primary_key=True)
+    comment = db.Column(db.String(255))
+    blog_id = db.Column(db.Integer, db.ForeignKey('blogs.id',ondelete='CASCADE'))
+    user_id = db.Column(db.Integer, db.ForeignKey('users.id',ondelete='CASCADE'))
+    posted = db.Column(db.DateTime, default=datetime.utcnow)
+    def saveComment(self):
+        db.session.add(self)
+        db.session.commit()
+    @classmethod
+    def getComment(cls, blog_id):
+        comments = Comment.query.filter_by(blog_id=blog_id).all()
+        return comments
+    def deleteComment(self):
+        db.session.delete(self)
+        db.session.commit()
+    def __repr__(self):
+        return f'Comments: {self.comment}'        
